@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+function search(){
+	var name = $("#search").val();
+	 $.ajax({
+         url: '/api/hello',
+         type: 'POST',
+         dataType : "json",
+		 data : {"name": name},
+         success: function (data) {
+        	 $("#name").append(data.returnObj);
+         },complete: function () {
+	        },
+         error: function (xhr, status, error) {
+         }
+     });
+}
+</script>
+</head>
+<body>
+Enter Anything : <input type="text" id="search">
+<input type="button" name="button" value="Enter" onclick="search();">
+<p id="name"></p>
+</body>
+</html>
