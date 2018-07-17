@@ -25,34 +25,33 @@ public class ApplicationConfiguration {
 			HttpServletRequest req,
 			@Valid AppDto appDto, BindingResult result,
 			HttpServletResponse response) {
-	
+
 		WebServiceResponse res = new WebServiceResponse();
 		try {
-				if (!result.hasErrors()) {
-					 if(!appDto.getName().equalsIgnoreCase("")) {
-							res.setReturnObj(appDto.getName());
-							res.setSucess(true);
-							System.out.println("name : "+appDto.getName());
-						}else {
-							res.setReturnObj("Please Enter Anything..!");
-							res.setSucess(false);
-							System.out.println("name : "+appDto.getName());
-						}
-					
+			if (!result.hasErrors()) {
+				if (!appDto.getName().equalsIgnoreCase("")) {
+					res.setReturnObj(appDto.getName());
+					res.setSucess(true);
+					System.out.println("name : " + appDto.getName());
 				} else {
-					String errorMessage = "";
-					List<ObjectError> errors = result.getAllErrors();
-					for (ObjectError objectError : errors) {
-						errorMessage = errorMessage
-								+ objectError.getDefaultMessage();
-					}
+					res.setReturnObj("Please Enter Anything..!");
 					res.setSucess(false);
-					res.setHasError(true);
-					res.setReturnMessage(errorMessage);
+					System.out.println("name : " + appDto.getName());
 				}
-			
+
+			} else {
+				String errorMessage = "";
+				List<ObjectError> errors = result.getAllErrors();
+				for (ObjectError objectError : errors) {
+					errorMessage = errorMessage + objectError.getDefaultMessage();
+				}
+				res.setSucess(false);
+				res.setHasError(true);
+				res.setReturnMessage(errorMessage);
+			}
+
 		} catch (Exception e) {
-		e.printStackTrace();
+			e.printStackTrace();
 		}
 
 		return res;
