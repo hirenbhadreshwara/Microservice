@@ -18,6 +18,10 @@ public class ApplicationConfiguration {
 			res.setReturnObj(name);
 			res.setSucess(true);
 			System.out.println("name : "+name);
+		}else {
+			res.setReturnObj("Please Enter Anything..!");
+			res.setSucess(false);
+			System.out.println("name : "+name);
 		}
 		return res;
 	}
