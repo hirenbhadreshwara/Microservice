@@ -14,6 +14,7 @@ public class ApplicationConfiguration {
 	public WebServiceResponse hello(@RequestParam("name") String name) {
 		WebServiceResponse res = new WebServiceResponse();
 		res.setReturnObj(name);
+		res.setSucess(true);
 		System.out.println("name : "+name);
 		return res;
 	}
